@@ -1,0 +1,3 @@
+class Building < MapObject
+
+end

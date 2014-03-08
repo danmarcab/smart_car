@@ -1,0 +1,3 @@
+class TrafficSign < MapObject
+
+end

@@ -1,0 +1,18 @@
+width: 100
+length: 100
+objects:
+  signal_1:
+    type: traffic_sign
+    x: 20
+    y: 20
+  signal_2:
+    type: traffic_sign
+    x: 30
+    y: 40
+  building_1:
+    type: building
+    x: 50
+    y: 60
+    width: 20
+    length: 20
+

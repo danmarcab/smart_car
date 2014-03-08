@@ -1,0 +1,8 @@
+traffic_sign:
+  width: 1
+  length: 1
+  type: static
+  media: signal.png
+building:
+  type: static
+
