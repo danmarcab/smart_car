@@ -2,15 +2,13 @@ require "spec_helper"
 
 describe MapObject do
   subject { MapObject.new({}) }
-  it { should respond_to :x }
-  it { should respond_to :y }
-  it { should respond_to :width }
-  it { should respond_to :length }
+  it { should respond_to :position }
+  it { should respond_to :size }
 
   describe ".create" do
     before do
-      @info = {}
-      @object = MapObject.create(:building, @info)
+      @data = {}
+      @object = MapObject.create(:building, @data)
     end
 
     it "creates an instance of the subtype" do
@@ -18,18 +16,51 @@ describe MapObject do
     end
 
     it "creates an instance of the subtype" do
-      @object.info.should == @info
+      @object.data.should == @data
     end
 
     context "when position attributes passed" do
       before do
-        @info = { x: 1, y: 1 }
-        @object = MapObject.create(:building, @info)
+        @data = { position: Vector[1, 1] }
+        @object = MapObject.create(:building, @data)
       end
 
       it "sets the position" do
-        @object.position.should == [@info[:x], @info[:y]]
+        @object.position.should == @data[:position]
       end
+    end
+
+    context "when size attributes passed" do
+      before do
+        @data = { size: Vector[1, 1] }
+        @object = MapObject.create(:building, @data)
+      end
+
+      it "sets the size" do
+        @object.size.should == @data[:size]
+      end
+    end
+  end
+
+  describe "#center" do
+    before do
+      @data = { position: Vector[1, 1] }
+      @object = MapObject.create(:building, @data)
+    end
+
+    it "returns the center" do
+      @object.center.should == @data[:position]
+    end
+  end
+
+  describe "#box" do
+    before do
+      @data = { position: Vector[0, 0], size: Vector[1, 1] }
+      @object = MapObject.create(:building, @data)
+    end
+
+    it "returns the bounding box" do
+      @object.box.should == [Vector[-0.5, -0.5], Vector[0.5, 0.5]]
     end
   end
 
