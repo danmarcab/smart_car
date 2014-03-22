@@ -2,6 +2,7 @@ source "https://rubygems.org"
 
 gem 'gosu'
 gem 'activesupport'
+gem 'spatial_hash'
 
 group :development, :test do
   gem 'debugger'
